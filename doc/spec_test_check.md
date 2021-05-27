@@ -9,24 +9,25 @@ and gives you the truly "free" generative testing that clojure.spec promises.
 There are two ways you can use this feature:
 
 1. Adding `:kaocha.type/spec.test.check` test suites to your `tests.edn`:
-- `:kaocha.testable/type` = :kaocha.type/spec.test.check
+- `:kaocha.testable/type` = `:kaocha.type/spec.test.check`
 - `:kaocha/source-paths`: Normally your fdefs are with your code, so this
 can probably be left defaulted at `["src"]`
 - `:kaocha.spec.test.check/checks`: Optional. If you want to
 orchestrate multiple "sets" of checks with differing parameters, you can
 specify them here. This is a collection of checks, each check being a map
 which may contain the following optional keys:
-- `:kaocha.spec.test.check/syms`: Currently your only options are either
+  - `:kaocha.spec.test.check/syms`: Currently your only options are either
 `:all-fdefs` (default) or to provide a set of the symbols for the fdefs
 which you want to test. Eventually we will add `:other-fdefs` to select
 all the fdefs that were not specifically mentioned in other checks.
-- `:clojure.spec.test.check/instrument?` Turn on orchestra instrumentation
+  - `:clojure.spec.test.check/instrument?` Turn on orchestra instrumentation
 during fdef checks
-- `:clojure.spec.test.check/check-asserts?` Run s/check-asserts during fdef
+    <!-- TODO: isn't orchestra unnecessary in this context? -->
+  - `:clojure.spec.test.check/check-asserts?` Run s/check-asserts during fdef
 checks
-- `:clojure.spec.test.check/opts`: A map containing any of:
-- `:num-tests`: Test iterations per fdef
-- `:max-size`: Maximum length of generated collections
+  - `:clojure.spec.test.check/opts`: A map containing any of:
+    - `:num-tests`: Test iterations per fdef
+    - `:max-size`: Maximum length of generated collections
 - All of the keys within each check can also be given in the top-level test
 suite map to be merged by default into all checks.
 2. The `kaocha.plugin.alpha/spec-test-check` plugin
